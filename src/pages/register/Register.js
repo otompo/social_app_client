@@ -34,7 +34,7 @@ function Register(props) {
         name: inputs.name,
         password: inputs.password,
       });
-      toast.error("Success");
+      toast.success("Success");
       navigate("/login");
     } catch (err) {
       console.log(err.response.data);
