@@ -57,7 +57,9 @@ const Profile = () => {
 
   return (
     <div className="profile">
-      {isLoading ? (
+      {error ? (
+        "something is wrong"
+      ) : isLoading ? (
         "loading"
       ) : (
         <>

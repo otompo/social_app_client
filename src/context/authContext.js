@@ -1,4 +1,5 @@
 import axios from "axios";
+import Cookies from "js-cookie";
 import { createContext, useEffect, useState } from "react";
 import { API_URL } from "../config/apiUrl.js";
 
@@ -10,9 +11,12 @@ export const AuthContextProvider = ({ children }) => {
   );
 
   const login = async (inputs) => {
-    const res = await axios.post(`${API_URL}/api/auth/login`, inputs);
+    const res = await axios.post(`${API_URL}/api/auth/login`, inputs, {
+      withCredentials: false,
+    });
 
     setCurrentUser(res.data);
+    // Cookies.set("accessToken", res.data.token);
   };
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(currentUser));

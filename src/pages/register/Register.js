@@ -4,10 +4,8 @@ import "./register.scss";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { API_URL } from "../../config/apiUrl";
-// import { AuthContext } from "../../context/authContext";
 
 function Register(props) {
-  // const { login } = useContext(AuthContext);
   const navigate = useNavigate();
   const [inputs, setInputs] = useState({
     username: "",
@@ -16,11 +14,6 @@ function Register(props) {
     password: "",
   });
 
-  // useEffect(() => {
-  //   if (login) {
-  //     navigate("/");
-  //   }
-  // });
   const handleChange = (e) => {
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
