@@ -1,13 +1,13 @@
-import { useContext, useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./register.scss";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { API_URL } from "../../config/apiUrl";
-import { AuthContext } from "../../context/authContext";
+// import { AuthContext } from "../../context/authContext";
 
 function Register(props) {
-  const { login } = useContext(AuthContext);
+  // const { login } = useContext(AuthContext);
   const navigate = useNavigate();
   const [inputs, setInputs] = useState({
     username: "",
@@ -28,12 +28,7 @@ function Register(props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`${API_URL}/api/auth/register`, {
-        username: inputs.username,
-        email: inputs.email,
-        name: inputs.name,
-        password: inputs.password,
-      });
+      await axios.post(`${API_URL}/api/auth/register`, inputs);
       toast.success("Success");
       navigate("/login");
     } catch (err) {
@@ -52,7 +47,7 @@ function Register(props) {
             and scrambled it to make a type specimen book.
           </p>
           <span>Do you have an account?</span>
-          <Link to="/Login">
+          <Link to="/login">
             <button>Login</button>
           </Link>
         </div>

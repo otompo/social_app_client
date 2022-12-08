@@ -1,13 +1,11 @@
-import axios from "axios";
 import { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
-import { API_URL } from "../../config/apiUrl";
 import { AuthContext } from "../../context/authContext";
 import "./login.scss";
 
 function Login(props) {
-  const { currentUser, setCurrentUser } = useContext(AuthContext);
+  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
   const [inputs, setInputs] = useState({
     username: "",
@@ -29,8 +27,7 @@ function Login(props) {
         toast.error("All fields are require");
         return;
       }
-      await axios.post(`${API_URL}/api/auth/login`, inputs);
-      setCurrentUser(inputs);
+      await login(inputs);
       toast.success("Success");
       navigate("/");
     } catch (err) {
